@@ -8,7 +8,7 @@ class Health(BaseModel):
 
 @app.get("/")
 def root():
-    return {"message": "Hola Cloud Run desde FastAPI!"}
+    return {"message": "Hola Mundo Cloud Run desde FastAPI!"}
 
 @app.get("/health", response_model=Health)
 def health():
