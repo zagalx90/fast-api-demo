@@ -43,7 +43,7 @@ env:
   AR_REPO: 'apps'
   DEPLOYER_SA_EMAIL: "github-deployer@true-subject-470215-a5.iam.gserviceaccount.com"
   RUNTIME_SA_EMAIL: "run-runtime@true-subject-470215-a5.iam.gserviceaccount.com"
-  IMAGE: "${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.AR_REPO }}/${{ env.SERVICE }}"
+  #IMAGE: "${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.AR_REPO }}/${{ env.SERVICE }}"
 
 jobs:
   deploy:
@@ -69,6 +69,9 @@ jobs:
           service_account: ${{ env.DEPLOYER_SA_EMAIL }}
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v2
+        
+      - name: Compose IMAGE and export to env
+        run: echo "IMAGE=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.AR_REPO }}/${{ env.SERVICE }}" >> $GITHUB_ENV
 
       - name: Configure Docker to use Artifact Registry
         run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
