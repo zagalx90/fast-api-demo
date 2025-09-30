@@ -8,7 +8,7 @@ class Health(BaseModel):
 
 @app.get("/")
 def root():
-    return {"message": "Hola Antonio"}
+    return {"message": "Hola Mundo"}
 
 @app.get("/health", response_model=Health)
 def health():
